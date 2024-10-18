@@ -2,22 +2,28 @@ package com.es.stockcontrol.repository;
 
 import com.es.stockcontrol.controller.api.ProveedorRepositoryAPI;
 import com.es.stockcontrol.model.Proveedor;
+import com.es.stockcontrol.utils.HibernateUtil;
+import com.es.stockcontrol.utils.exceptions.RepositoryException;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+
 
 public class ProveedorRepository implements ProveedorRepositoryAPI {
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    public ProveedorRepository() {
-        this.emf = Persistence.createEntityManagerFactory("Stock-Control");
-        this.em = emf.createEntityManager();
+
+    public EntityManager getEntityManager() {
+        return HibernateUtil.getEntityManager("Stock-Control");
     }
+
+    public void closeEntityManager(EntityManager em) {
+        HibernateUtil.closeEntityManager(em);
+    }
+    
     @Override
-    public Proveedor insertar(Proveedor producto) {
-        em.getTransaction().begin();
-        em.persist(producto);
-        em.get
+    public Proveedor insertar(Proveedor producto) throws RepositoryException {
+        try{
+            getEntityManager()
+        } catch (Exception e) {
+            throw new RepositoryException("Error de BD");
+        }
         return null;
     }
 
