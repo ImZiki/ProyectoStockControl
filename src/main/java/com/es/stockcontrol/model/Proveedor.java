@@ -20,6 +20,12 @@ public class Proveedor {
     public Proveedor() {
     }
 
+    public Proveedor(String nombre, String direccion, List<Producto> productos) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.productos = productos;
+    }
+
     public Long getIdProvedor() {
         return idProvedor;
     }

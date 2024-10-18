@@ -31,6 +31,25 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(String categoria, String nombre, String descripcion, float precioSinIva, float precioConIva, Date fechaAlta, int stock, Proveedor proveedor) {
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioSinIva = precioSinIva;
+        this.precioConIva = precioConIva;
+        this.fechaAlta = fechaAlta;
+        this.stock = stock;
+        this.proveedor = proveedor;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     public String getIdProducto() {
         return idProducto;
     }
