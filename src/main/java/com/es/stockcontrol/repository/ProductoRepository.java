@@ -21,4 +21,8 @@ public class ProductoRepository implements ProductoRepositoryAPI {
     public Producto baja(Producto producto) {
         return null;
     }
+
+    //hacer get por idProducto para el productoService
+
+
 }
