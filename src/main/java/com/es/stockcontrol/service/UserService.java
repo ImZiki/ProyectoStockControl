@@ -40,8 +40,8 @@ public class UserService {
             if(user != null)
                 throw new SQLException("Usuario ya existente");
             user = new User(nombreUsuario, hasshedpw);
-            userRepository.insert(user);
-            return user;
+
+            return userRepository.insert(user);
         } catch (Exception e) {
             throw new ServiceException(e.getMessage());
         }
