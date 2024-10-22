@@ -62,7 +62,7 @@ public class UserRepository {
             User user = em.find(User.class, nombreUsuario);
             closeEntityManager(em);
             return user;
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             throw new RepositoryException(e.getMessage());
         }
 
