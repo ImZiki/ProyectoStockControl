@@ -16,11 +16,12 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     public void closeEntityManager(EntityManager em) {
         HibernateUtil.closeEntityManager(em);
     }
-    
+
+
     @Override
-    public Proveedor insertar(Proveedor producto) throws RepositoryException {
+    public Proveedor alta(Proveedor producto) {
         try{
-            getEntityManager()
+            getEntityManager();
         } catch (Exception e) {
             throw new RepositoryException("Error de BD");
         }
@@ -29,12 +30,24 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
 
     @Override
     public Proveedor actualizar(Proveedor producto) {
-        em.getTransaction().begin();
-        return em.merge(producto);
-    }
-
-    @Override
-    public Proveedor eliminar(Proveedor producto) {
+        try{
+            getEntityManager();
+        } catch (Exception e) {
+            throw new RepositoryException("Error de BD");
+        }
         return null;
     }
+
+
+
+    @Override
+    public Proveedor baja(Proveedor producto) {
+        try{
+            getEntityManager();
+        } catch (Exception e) {
+            throw new RepositoryException("Error de BD");
+        }
+        return null;
+    }
+
 }

@@ -4,9 +4,9 @@ import com.es.stockcontrol.model.Producto;
 
 public interface ProductoRepositoryAPI extends GenericRepositoryAPI<Producto> {
     @Override
-    Producto insertar(Producto producto);
+    Producto alta(Producto producto);
     @Override
     Producto actualizar(Producto producto);
     @Override
-    Producto eliminar(Producto producto);
+    Producto baja(Producto producto);
 }

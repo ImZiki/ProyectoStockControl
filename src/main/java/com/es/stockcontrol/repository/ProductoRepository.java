@@ -8,7 +8,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
 
 
     @Override
-    public Producto insertar(Producto producto) {
+    public Producto alta(Producto producto) {
         return null;
     }
 
@@ -18,7 +18,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
     }
 
     @Override
-    public Producto eliminar(Producto producto) {
+    public Producto baja(Producto producto) {
         return null;
     }
 }
