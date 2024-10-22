@@ -5,8 +5,6 @@ import com.es.stockcontrol.utils.HibernateUtil;
 import com.es.stockcontrol.utils.exceptions.RepositoryException;
 import jakarta.persistence.EntityManager;
 
-import java.sql.SQLException;
-
 public class UserRepository {
 
     public EntityManager getEntityManager(){

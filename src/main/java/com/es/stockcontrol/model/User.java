@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 public class User {
     @Id
     private String nombreUsuario;
-    @Column(length = 20, nullable = false)
+    @Column(nullable = false)
     private String contrasenia;
 
     public User() {
