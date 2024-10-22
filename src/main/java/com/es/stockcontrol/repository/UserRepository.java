@@ -16,7 +16,7 @@ public class UserRepository {
         HibernateUtil.closeEntityManager(em);
     }
 
-    User insert(User user) throws RepositoryException {
+    public User insert(User user) throws RepositoryException {
         try{
             EntityManager em = getEntityManager();
             em.getTransaction().begin();
@@ -29,7 +29,7 @@ public class UserRepository {
         }
     }
 
-    User delete(User user) throws RepositoryException {
+    public User delete(User user) throws RepositoryException {
         try{
             EntityManager em = getEntityManager();
             em.getTransaction().begin();
@@ -42,7 +42,7 @@ public class UserRepository {
         }
     }
 
-    User update(User user) throws RepositoryException {
+    public User update(User user) throws RepositoryException {
         try{
             EntityManager em = getEntityManager();
             em.getTransaction().begin();
