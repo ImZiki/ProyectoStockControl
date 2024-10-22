@@ -46,7 +46,7 @@ public class ProductoController implements ProductoControllerAPI {
     }
 
     @Override
-    public RespuestaHTTP<Producto> modificarStockProducto(String id, String nuevoStock) {
+    public RespuestaHTTP<Producto> modificarStockProducto(String id, int nuevoStock) {
         try{
             Producto producto = service.modificarStockProducto(id,nuevoStock);
             return producto != null ? new RespuestaHTTP<>(200, "OK", producto):

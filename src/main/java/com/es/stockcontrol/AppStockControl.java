@@ -231,7 +231,7 @@ public class AppStockControl {
         System.out.print("Introduzca el id del producto: ");
         String idProducto = scan.nextLine();
         System.out.print("Introduzca el nuevo stock: ");
-        String nuevoStock = scan.nextLine();
+        int nuevoStock = scan.nextInt();
         RespuestaHTTP<Producto> respuesta = productoController.modificarStockProducto(idProducto, nuevoStock);
 
         if (respuesta != null && respuesta.getCodigo() == 200) {
