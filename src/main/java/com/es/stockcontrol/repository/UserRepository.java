@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UserRepository {
 
     public EntityManager getEntityManager(){
-        return HibernateUtil.getEntityManager("UserUnit");
+        return HibernateUtil.getEntityManager("Stock-Control");
     }
     public void closeEntityManager(EntityManager em){
         HibernateUtil.closeEntityManager(em);
