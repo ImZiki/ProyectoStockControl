@@ -8,6 +8,7 @@ import java.util.List;
 public class Proveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long idProvedor;
     @Column(length = 50, nullable = false)
     private String nombre;

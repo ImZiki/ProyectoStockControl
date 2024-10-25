@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 @Table
 public class Producto {
-    @Id
+    @Id()
+    @Column(name = "id")
     private String idProducto;
     @Column(length = 10, nullable = false)
     private String categoria;
@@ -15,11 +16,11 @@ public class Producto {
     private String nombre;
     @Column
     private String descripcion;
-    @Column(nullable = false)
+    @Column(name = "precio_sin_iva",nullable = false)
     private float precioSinIva;
-    @Column(nullable = false)
+    @Column(name = "precio_con_iva",nullable = false)
     private float precioConIva;
-    @Column(nullable = false)
+    @Column(name = "fecha_alta",nullable = false)
     private Date fechaAlta;
     @Column
     private int stock;
