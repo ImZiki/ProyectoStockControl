@@ -32,6 +32,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
 
     @Override
     public Producto actualizar(Producto producto) {
+        //Preguntar a diego si utilizamos el metodo closeEntityManager() o un try with resources
         try(EntityManager em = getEntityManager()){
             return em.merge(producto);
         } catch (Exception e) {
