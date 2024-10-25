@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ProductoRepository implements ProductoRepositoryAPI {
 
-    private List<Producto> listaProductos;
 
     public EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager("Stock-Control");
@@ -21,40 +20,59 @@ public class ProductoRepository implements ProductoRepositoryAPI {
 
     @Override
     public Producto alta(Producto producto) {
-        return null;
+        try(EntityManager em = getEntityManager()){
+            em.getTransaction().begin();
+            em.persist(producto);
+            em.getTransaction().commit();
+            return producto;
+        }catch(Exception e){
+            throw new RepositoryException("Error al alta");
+        }
     }
 
     @Override
     public Producto actualizar(Producto producto) {
-        return null;
+        try(EntityManager em = getEntityManager()){
+            return em.merge(producto);
+        } catch (Exception e) {
+            throw new RepositoryException("Error al actualizar el producto");
+        }
     }
 
     @Override
     public Producto baja(Producto producto) {
-        return null;
-    }
-
-    public Producto get(){
-
-    }
-
-    public List<Producto> getStock(boolean stock){
-        try{
-            EntityManager em = getEntityManager();
+        try(EntityManager em = getEntityManager()){
             em.getTransaction().begin();
-            if(stock){
-                String consulta = "SELECT p FROM producto p WHERE p.stock > 0";
-                return em.createQuery(consulta, Producto.class).getResultList();
-            }else
-                return null;
-
+            em.remove(producto);
+            em.getTransaction().commit();
+            return producto;
         }catch(Exception e){
-            throw new RepositoryException(e.getMessage());
+            throw new RepositoryException("Error al borrar el producto");
         }
     }
 
+    public Producto getProducto(String idProducto){
+        try(EntityManager em = getEntityManager()){
+            String query = "SELECT p FROM Producto p WHERE p.id = " + idProducto;
+            return (Producto) em.createQuery(query).getSingleResult();
+        } catch (Exception e) {
+            throw new RepositoryException("Error al obtener los productos");
+        }
 
-    //hacer get por idProducto para el productoService
+    }
 
+    public List<Producto> getProductoStock(boolean stock){
+        try(EntityManager em = getEntityManager()){
+            String query = stock ?
+                    "SELECT p FROM Producto p WHERE p.stock > 0" :
+                    "SELECT p FROM Producto p WHERE p.stock <= 0";
+            if(stock){
+                return em.createQuery(query, Producto.class).getResultList();
+            }else
+                return em.createQuery(query, Producto.class).getResultList();
 
+        }catch(Exception e){
+            throw new RepositoryException("Error al obtener los productos");
+        }
+    }
 }

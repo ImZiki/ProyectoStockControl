@@ -113,7 +113,7 @@ public class ProductoService {
                 throw new IllegalArgumentException("No se puede obtener el producto");
             }
 
-            Producto producto = productoRepository.get(idProducto);
+            Producto producto = productoRepository.getProducto(idProducto);
             if (producto == null)
                 throw new NullPointerException("No se encontro el producto con ID: " + idProducto);
 
@@ -126,8 +126,8 @@ public class ProductoService {
     public List<Producto> getProductosConStock() throws ServiceException {
         try {
             boolean stock = true;
-            List<Producto> listaProductos = new ArrayList<>();
-            listaProductos.add(productoRepository.getStock(stock));
+            List<Producto> listaProductos;
+            listaProductos = productoRepository.getProductoStock(stock);
 
             return listaProductos;
         }catch (Exception e){
@@ -138,8 +138,8 @@ public class ProductoService {
     public List<Producto> getProductosSinStock() throws ServiceException {
         try {
             boolean stock = false;
-            List<Producto> listaProductos = new ArrayList<>();
-            listaProductos.add(productoRepository.getStock(stock));
+            List<Producto> listaProductos;
+            listaProductos = (productoRepository.getProductoStock(stock));
 
             return listaProductos;
         }catch (Exception e){
