@@ -10,4 +10,5 @@ public interface ProveedorRepositoryAPI extends GenericRepositoryAPI<Proveedor>{
     Proveedor actualizar(Proveedor producto);
     @Override
     Proveedor baja(Proveedor producto);
+
 }

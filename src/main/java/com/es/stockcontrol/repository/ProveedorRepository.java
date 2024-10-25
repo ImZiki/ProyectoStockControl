@@ -6,6 +6,8 @@ import com.es.stockcontrol.utils.HibernateUtil;
 import com.es.stockcontrol.utils.exceptions.RepositoryException;
 import jakarta.persistence.EntityManager;
 
+import java.util.List;
+
 
 public class ProveedorRepository implements ProveedorRepositoryAPI {
 
@@ -51,4 +53,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     }
 
     //Hacer get por nombre para buscar el proveedor y devolverlo al productoService
+
+    //Hacer getProovedoreProducto(idProducto) y devolver una lista de proveedores que proveen el producto
+
+    //Hacer getTodosProveedores() y devolver una lista con todos los proveedores
+
 }
