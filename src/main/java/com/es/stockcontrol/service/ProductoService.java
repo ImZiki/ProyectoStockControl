@@ -14,7 +14,9 @@ import java.util.List;
 public class ProductoService {
     private ProductoRepository productoRepository;
     private ProveedorRepository proveedorRepository;
-    public ProductoService(){this.productoRepository = new ProductoRepository();}
+    public ProductoService(){
+        this.proveedorRepository = new ProveedorRepository();
+        this.productoRepository = new ProductoRepository();}
 
 
     public Producto altaProducto(String categoria,String nombreProducto, String descripcionProducto, float precioSinIva,int stock,String nombreProveedor) throws ServiceException {

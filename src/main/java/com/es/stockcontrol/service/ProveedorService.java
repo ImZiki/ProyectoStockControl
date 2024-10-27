@@ -10,6 +10,11 @@ import java.util.List;
 
 public class ProveedorService {
     private ProveedorRepository proveedorRepository;
+
+    public ProveedorService(){
+        proveedorRepository = new ProveedorRepository();
+    }
+
     public List<Proveedor> getProveedoresProductos(String idProducto) throws ServiceException {
         try{
             if (idProducto.isEmpty() || idProducto == null){

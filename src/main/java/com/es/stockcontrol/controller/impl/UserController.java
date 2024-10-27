@@ -24,4 +24,14 @@ public class UserController implements UserControllerAPI {
             return new RespuestaHTTP<>(500, e.getMessage() ,null);
         }
     }
+
+    public RespuestaHTTP<User> altaUsuario(String userInput, String passInput) {
+        try{
+            User user = service.insert(userInput,passInput);
+            return user != null ? new RespuestaHTTP<>(200, "OK", user):
+                    new RespuestaHTTP<>(400, "Bad Request", null);
+        } catch (Exception e) {
+            return new RespuestaHTTP<>(500, e.getMessage() ,null);
+        }
+    }
 }

@@ -55,7 +55,7 @@ public class AppStockControl {
                 String passwordInput = scan.nextLine();
 
                 UserController pController = new UserController();
-
+                RespuestaHTTP<User> respuestaHTTP1 = pController.altaUsuario("Pepe", "1234567890");
                 RespuestaHTTP<User> respuestaHTTP = pController.login(userInput, passwordInput);
 
                 try {
@@ -151,6 +151,7 @@ public class AppStockControl {
                         break;
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("ERROR CONTROLADO");
             }
         } while (!opc.equals("0"));
@@ -169,17 +170,17 @@ public class AppStockControl {
         System.out.print("nombre: ");
         String nombreProducto = scan.nextLine();
         System.out.print("precio sin IVA: ");
-        float precioSinIva = scan.nextFloat();
+        String precioSinIva = scan.nextLine();
         System.out.print("descripcion: ");
         String descripcionProducto = scan.nextLine();
-        System.out.print("stock");
-        int stock = scan.nextInt();
+        System.out.print("stock: ");
+        String stock = scan.nextLine();
         System.out.println("DETALLES PROVEEDOR");
         System.out.print("nombre: ");
         String nombreProveedor = scan.nextLine();
 
 
-        RespuestaHTTP<Producto> respuesta = productoController.altaProducto(categoriaProducto, nombreProducto, descripcionProducto, precioSinIva, stock, nombreProveedor);
+        RespuestaHTTP<Producto> respuesta = productoController.altaProducto(categoriaProducto, nombreProducto, descripcionProducto, Float.parseFloat(precioSinIva), Integer.parseInt(stock), nombreProveedor);
 
         if (respuesta != null && respuesta.getCodigo() == 200) {
             System.out.printf("PRODUCTO INSERTADO CORRECTAMENTE\n%s", respuesta.getObj().toString());

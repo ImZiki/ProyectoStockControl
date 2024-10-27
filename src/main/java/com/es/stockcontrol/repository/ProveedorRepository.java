@@ -60,8 +60,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     //Hacer get por nombre para buscar el proveedor y devolverlo al productoService
     public Proveedor get(String nombreProveedor){
         try(EntityManager em = getEntityManager()){
+            String query = "SELECT p FROM Proveedor p WHERE p.nombre = '" + nombreProveedor + "'";
             em.getTransaction().begin();
-            Proveedor proveedor = em.find(Proveedor.class, nombreProveedor);
+            Proveedor proveedor = em.createQuery(query, Proveedor.class).getSingleResult();
             em.getTransaction().commit();
             return proveedor;
         } catch (Exception e) {
