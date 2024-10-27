@@ -10,17 +10,14 @@ public class UserRepository {
     public EntityManager getEntityManager(){
         return HibernateUtil.getEntityManager("Stock-Control");
     }
-    public void closeEntityManager(EntityManager em){
-        HibernateUtil.closeEntityManager(em);
-    }
 
     public User insert(User user) throws RepositoryException {
-        try{
-            EntityManager em = getEntityManager();
+        try(EntityManager em = getEntityManager()){
+
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
-            closeEntityManager(em);
+
             return user;
         }catch(Exception e){
             throw new RepositoryException(e.getMessage());
@@ -28,12 +25,11 @@ public class UserRepository {
     }
 
     public User delete(User user) throws RepositoryException {
-        try{
-            EntityManager em = getEntityManager();
+        try(EntityManager em = getEntityManager()){
+
             em.getTransaction().begin();
             em.remove(user);
             em.getTransaction().commit();
-            closeEntityManager(em);
             return user;
         } catch (Exception e) {
             throw new RepositoryException(e.getMessage());
@@ -41,12 +37,12 @@ public class UserRepository {
     }
 
     public User update(User user) throws RepositoryException {
-        try{
-            EntityManager em = getEntityManager();
+        try(EntityManager em = getEntityManager()){
+
             em.getTransaction().begin();
             em.merge(user);
             em.getTransaction().commit();
-            closeEntityManager(em);
+
             return user;
         }catch(Exception e){
             throw new RepositoryException(e.getMessage());
@@ -55,11 +51,8 @@ public class UserRepository {
 
 
     public User get(String nombreUsuario)throws RepositoryException {
-        try{
-            EntityManager em = getEntityManager();
-            User user = em.find(User.class, nombreUsuario);
-            closeEntityManager(em);
-            return user;
+        try(EntityManager em = getEntityManager()){
+            return em.find(User.class, nombreUsuario);
         }catch (Exception e){
             throw new RepositoryException(e.getMessage());
         }

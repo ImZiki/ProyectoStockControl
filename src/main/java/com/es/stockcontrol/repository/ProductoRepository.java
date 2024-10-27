@@ -11,12 +11,7 @@ import java.util.List;
 public class ProductoRepository implements ProductoRepositoryAPI {
 
 
-    public EntityManager getEntityManager(){
-        return HibernateUtil.getEntityManager("Stock-Control");
-    }
-    public void closeEntityManager(EntityManager em){
-        HibernateUtil.closeEntityManager(em);
-    }
+    public EntityManager getEntityManager(){return HibernateUtil.getEntityManager("Stock-Control");}
 
     @Override
     public Producto alta(Producto producto) {
@@ -32,7 +27,6 @@ public class ProductoRepository implements ProductoRepositoryAPI {
 
     @Override
     public Producto actualizar(Producto producto) {
-        //Preguntar a diego si utilizamos el metodo closeEntityManager() o un try with resources
         try(EntityManager em = getEntityManager()){
             return em.merge(producto);
         } catch (Exception e) {

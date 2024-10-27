@@ -15,27 +15,25 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
         return HibernateUtil.getEntityManager("Stock-Control");
     }
 
-    public void closeEntityManager(EntityManager em) {
-        HibernateUtil.closeEntityManager(em);
-    }
+
 
 
     @Override
     public Proveedor alta(Proveedor producto) {
-        try{
-            getEntityManager();
+        try(EntityManager em = getEntityManager()) {
+
         } catch (Exception e) {
-            throw new RepositoryException("Error de BD");
+            throw new RepositoryException(e.getMessage());
         }
         return null;
     }
 
     @Override
     public Proveedor actualizar(Proveedor producto) {
-        try{
-            getEntityManager();
+        try(EntityManager em = getEntityManager()){
+
         } catch (Exception e) {
-            throw new RepositoryException("Error de BD");
+            throw new RepositoryException(e.getMessage());
         }
         return null;
     }
@@ -44,16 +42,22 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
 
     @Override
     public Proveedor baja(Proveedor producto) {
-        try{
-            getEntityManager();
+        try(EntityManager em = getEntityManager()){
+
         } catch (Exception e) {
-            throw new RepositoryException("Error de BD");
+            throw new RepositoryException(e.getMessage());
         }
         return null;
     }
 
     //Hacer get por nombre para buscar el proveedor y devolverlo al productoService
+    public get(String nombreProveedor){
+        try(EntityManager em = getEntityManager()){
 
+        } catch (Exception e) {
+            throw new RepositoryException(e.getMessage());
+        }
+    }
     //Hacer getProovedoreProducto(idProducto) y devolver una lista de proveedores que proveen el producto
 
     //Hacer getTodosProveedores() y devolver una lista con todos los proveedores
