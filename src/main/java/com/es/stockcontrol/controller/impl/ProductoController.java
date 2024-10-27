@@ -12,9 +12,9 @@ public class ProductoController implements ProductoControllerAPI {
     ProductoService service = new ProductoService();
 
     @Override
-    public RespuestaHTTP<Producto> altaProducto(String categoria,String nombreProducto, String descripcionProducto, float precioSinIva, float precioConIva,int stock,String nombreProveedor) {
+    public RespuestaHTTP<Producto> altaProducto(String categoria,String nombreProducto, String descripcionProducto, float precioSinIva,int stock,String nombreProveedor) {
         try{
-            Producto producto = service.altaProducto(categoria, nombreProducto, descripcionProducto, precioSinIva, precioConIva, stock, nombreProveedor);
+            Producto producto = service.altaProducto(categoria, nombreProducto, descripcionProducto, precioSinIva, stock, nombreProveedor);
             return producto != null ? new RespuestaHTTP<>(200, "OK", producto):
                     new RespuestaHTTP<>(400, "Bad request" ,null);
         }catch (ServiceException e){
