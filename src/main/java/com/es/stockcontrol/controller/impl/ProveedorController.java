@@ -16,7 +16,7 @@ public class ProveedorController implements ProveedorControllerAPI {
     @Override
     public RespuestaHTTP<List<Proveedor>> getProveedoresProducto(String idProducto) {
         try{
-            List<Proveedor> proveedor = service.getProveedoresProducto(idProducto);
+            List<Proveedor> proveedor = service.getProveedoresProductos(idProducto);
             return proveedor != null ? new RespuestaHTTP<>(200, "OK", proveedor):
                     new RespuestaHTTP<>(400, "Bad request" ,null);
         }catch (ServiceException e){
