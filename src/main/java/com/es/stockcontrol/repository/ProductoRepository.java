@@ -21,7 +21,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
             em.getTransaction().commit();
             return producto;
         }catch(Exception e){
-            throw new RepositoryException("Error al alta");
+            throw new RepositoryException(e.getMessage());
         }
     }
 
@@ -33,7 +33,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
             em.getTransaction().commit();
             return productoActualizado;
         } catch (Exception e) {
-            throw new RepositoryException("Error al actualizar el producto");
+            throw new RepositoryException(e.getMessage());
         }
     }
 
@@ -41,20 +41,26 @@ public class ProductoRepository implements ProductoRepositoryAPI {
     public Producto baja(Producto producto) {
         try(EntityManager em = getEntityManager()){
             em.getTransaction().begin();
-            em.remove(producto);
+            Producto productoBorrar = em.find(Producto.class, producto.getIdProducto());
+            if(productoBorrar != null){
+                em.remove(productoBorrar);
+            }
             em.getTransaction().commit();
-            return producto;
+            return productoBorrar;
         }catch(Exception e){
-            throw new RepositoryException("Error al borrar el producto");
+            throw new RepositoryException(e.getMessage());
         }
     }
 
     public Producto getProducto(String idProducto){
         try(EntityManager em = getEntityManager()){
-            String query = "SELECT p FROM Producto p WHERE p.id = " + idProducto;
-            return (Producto) em.createQuery(query).getSingleResult();
+            String query = "SELECT p FROM Producto p WHERE p.id = '" + idProducto + "'";
+            em.getTransaction().begin();
+            Producto producto = em.find(Producto.class, idProducto);
+            em.getTransaction().commit();
+            return producto;
         } catch (Exception e) {
-            throw new RepositoryException("Error al obtener los productos");
+            throw new RepositoryException(e.getMessage());
         }
 
     }
@@ -70,7 +76,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
                 return em.createQuery(query, Producto.class).getResultList();
 
         }catch(Exception e){
-            throw new RepositoryException("Error al obtener los productos");
+            throw new RepositoryException(e.getMessage());
         }
     }
 }

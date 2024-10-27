@@ -15,7 +15,7 @@ public class Proveedor {
     @Column(nullable = false)
     private String direccion;
 
-    @OneToMany(mappedBy = "proveedor", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "proveedor", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Producto> productos;
 
     public Proveedor() {

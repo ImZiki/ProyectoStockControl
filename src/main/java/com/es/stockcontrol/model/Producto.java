@@ -25,7 +25,7 @@ public class Producto {
     @Column
     private int stock;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinColumn(name = "idProveedor")
     private Proveedor proveedor;
 
@@ -127,7 +127,7 @@ public class Producto {
                 ", precioConIva=" + precioConIva +
                 ", fechaAlta=" + fechaAlta +
                 ", stock=" + stock +
-                ", proveedor=" + proveedor +
+                ", proveedor=" + (proveedor != null ? proveedor.getNombre() : "null") +
                 '}';
     }
 }

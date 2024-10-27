@@ -57,7 +57,7 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
         return null;
     }
 
-    //Hacer get por nombre para buscar el proveedor y devolverlo al productoService
+
     public Proveedor get(String nombreProveedor){
         try(EntityManager em = getEntityManager()){
             String query = "SELECT p FROM Proveedor p WHERE p.nombre = '" + nombreProveedor + "'";
@@ -69,24 +69,28 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
             throw new RepositoryException(e.getMessage());
         }
     }
-    //Hacer getProovedoreProducto(idProducto) y devolver una lista de proveedores que proveen el producto
+
     public List<Proveedor> getAllProveedoresProducto(String idProducto){
         try(EntityManager em = getEntityManager()){
-            String query = "SELECT p.proveedor FROM Producto p WHERE p.idProducto = " + idProducto;
+            String query = "SELECT p.proveedor FROM Producto p WHERE p.idProducto = '" + idProducto + "'";
             em.getTransaction().begin();
             ArrayList proveedores = new ArrayList(em.createQuery(query).getResultList());
             em.getTransaction().commit();
             return proveedores;
+        }catch (Exception e){
+            throw new RepositoryException(e.getMessage());
         }
     }
-    //Hacer getTodosProveedores() y devolver una lista con todos los proveedores
+
     public List<Proveedor> getAllProveedores(){
         try(EntityManager em = getEntityManager()){
-            String query = "SELECT * FROM Proveedor";
+            String query = "SELECT p FROM Proveedor p";
             em.getTransaction().begin();
             ArrayList proveedores = new ArrayList(em.createQuery(query).getResultList());
             em.getTransaction().commit();
             return proveedores;
+        } catch (Exception e) {
+            throw new RepositoryException(e.getMessage());
         }
     }
 }
