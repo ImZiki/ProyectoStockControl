@@ -172,7 +172,8 @@ public class AppStockControl {
         float precioSinIva = scan.nextFloat();
         System.out.print("descripcion: ");
         String descripcionProducto = scan.nextLine();
-
+        System.out.print("stock");
+        int stock = scan.nextInt();
         System.out.println("DETALLES PROVEEDOR");
         System.out.print("nombre: ");
         String nombreProveedor = scan.nextLine();
