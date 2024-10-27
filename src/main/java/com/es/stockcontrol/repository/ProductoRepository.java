@@ -31,6 +31,7 @@ public class ProductoRepository implements ProductoRepositoryAPI {
             em.getTransaction().begin();
             Producto productoActualizado = em.merge(producto);
             em.getTransaction().commit();
+            return productoActualizado;
         } catch (Exception e) {
             throw new RepositoryException("Error al actualizar el producto");
         }

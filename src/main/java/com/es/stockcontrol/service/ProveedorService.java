@@ -15,7 +15,7 @@ public class ProveedorService {
             if (idProducto.isEmpty() || idProducto == null){
                 throw new IllegalArgumentException("No se puede obtener los proveedores a partir de esa ID de producto.");
             }
-            List<Proveedor> listaproveedores = proveedorRepository.getProveedoresProductos(idProducto);
+            List<Proveedor> listaproveedores = proveedorRepository.getAllProveedoresProducto(idProducto);
             return listaproveedores;
         }catch (Exception e){
             throw new ServiceException(e.getMessage());
@@ -24,8 +24,8 @@ public class ProveedorService {
 
     public List<Proveedor> getTodosProveedores() throws ServiceException{
         try{
-            List<Proveedor> listaProveedor = new ArrayList<>();
-            listaProveedor.add(proveedorRepository.getTodosProveedores());
+            List<Proveedor> listaProveedor;
+            listaProveedor = new ArrayList<>(proveedorRepository.getAllProveedores());
 
             return listaProveedor;
         }catch (Exception e){
