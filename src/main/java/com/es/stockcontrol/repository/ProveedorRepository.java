@@ -21,7 +21,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     @Override
     public Proveedor alta(Proveedor producto) {
         try(EntityManager em = getEntityManager()) {
-
+            em.getTransaction().begin();
+            em.persist(producto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             throw new RepositoryException(e.getMessage());
         }
@@ -31,7 +33,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     @Override
     public Proveedor actualizar(Proveedor producto) {
         try(EntityManager em = getEntityManager()){
-
+            em.getTransaction().begin();
+            em.merge(producto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             throw new RepositoryException(e.getMessage());
         }
@@ -43,7 +47,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     @Override
     public Proveedor baja(Proveedor producto) {
         try(EntityManager em = getEntityManager()){
-
+            em.getTransaction().begin();
+            em.remove(producto);
+            em.getTransaction().commit();
         } catch (Exception e) {
             throw new RepositoryException(e.getMessage());
         }
@@ -53,7 +59,9 @@ public class ProveedorRepository implements ProveedorRepositoryAPI {
     //Hacer get por nombre para buscar el proveedor y devolverlo al productoService
     public get(String nombreProveedor){
         try(EntityManager em = getEntityManager()){
-
+            em.getTransaction().begin();
+            Proveedor proveedor = em.find(Proveedor.class, nombreProveedor);
+            em.getTransaction().commit();
         } catch (Exception e) {
             throw new RepositoryException(e.getMessage());
         }
